@@ -342,7 +342,7 @@ export default function Portfolio() {
           <a href="https://github.com/vilacprd" className="flex items-center gap-2 font-mono text-sm px-4 py-2 rounded border" style={{ borderColor: TOKENS.line }}>
             <Github size={16} /> GitHub
           </a>
-          <a href="https://linkedin.com/in/victor-capdevila-rodriguez" className="flex items-center gap-2 font-mono text-sm px-4 py-2 rounded border" style={{ borderColor: TOKENS.line }}>
+          <a href="https://www.linkedin.com/in/v%C3%ADctor-capdevila-rodr%C3%ADguez-8a873b257/" className="flex items-center gap-2 font-mono text-sm px-4 py-2 rounded border" style={{ borderColor: TOKENS.line }}>
             <Linkedin size={16} /> LinkedIn
           </a>
         </div>
@@ -364,7 +364,7 @@ function ModeToggle({ mode, setMode }) {
     >
       <button
         onClick={() => setMode("blue")}
-        className="flex items-center gap-1 px-3 py-1.5 rounded-full transition"
+        className="flex items-center gap-1 px-3 py-1.5 rounded-full transition cursor-pointer"
         style={{
           backgroundColor: mode === "blue" ? TOKENS.blue : "transparent",
           color: mode === "blue" ? TOKENS.ink : TOKENS.muted,
@@ -374,7 +374,7 @@ function ModeToggle({ mode, setMode }) {
       </button>
       <button
         onClick={() => setMode("red")}
-        className="flex items-center gap-1 px-3 py-1.5 rounded-full transition"
+        className="flex items-center gap-1 px-3 py-1.5 rounded-full transition cursor-pointer"
         style={{
           backgroundColor: mode === "red" ? TOKENS.amber : "transparent",
           color: mode === "red" ? TOKENS.ink : TOKENS.muted,
