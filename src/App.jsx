@@ -4,8 +4,7 @@ import {
   Radio, Fingerprint, Network, Code2, GraduationCap, ChevronRight,
 } from "lucide-react";
 
-// Lucide 1.0 eliminó los iconos de marca (GitHub, LinkedIn...) por temas de
-// trademark, así que los sustituimos por SVGs propios con el mismo estilo.
+
 function Github({ size = 16, ...props }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" {...props}>
