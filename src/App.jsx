@@ -82,7 +82,7 @@ const UI = {
     downloadCV: "Descargar CV",
     contactBtn: "Contactar",
     statusBlue: "STATUS: monitorizando",
-    statusRed: "STATUS: explotando",
+    statusRed: "STATUS: exploiting",
     skillsEyebrow: "Habilidades técnicas",
     projectsEyebrow: "Proyectos destacados",
     toComplete: "por completar",
