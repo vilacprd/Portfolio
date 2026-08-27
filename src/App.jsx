@@ -73,29 +73,82 @@ function StatusDot({ active, accent }) {
   );
 }
 
+const UI = {
+  es: {
+    nav: { about: "Sobre mí", skills: "Skills", projects: "Proyectos", experience: "Experiencia", contact: "Contacto" },
+    heroRole: "Analista SOC Junior · Especialista en Ciberseguridad · Desarrollador Full-Stack",
+    heroText:
+      "Combino una mentalidad ofensiva y defensiva para la mitigación proactiva de riesgos. Mi formación en desarrollo de software me da una ventaja analítica diferencial: entender las vulnerabilidades lógicas de una topología desde su propio código fuente.",
+    viewGithub: "Ver GitHub",
+    downloadCV: "Descargar CV",
+    contactBtn: "Contactar",
+    statusBlue: "STATUS: monitorizando",
+    statusRed: "STATUS: explotando",
+    skillsEyebrow: "Habilidades técnicas",
+    projectsEyebrow: "Proyectos destacados",
+    toComplete: "por completar",
+    experienceEyebrow: "Experiencia",
+    contactEyebrow: "Contacto",
+    contactBlurb: "Abierto a oportunidades como analista SOC, pentester junior o desarrollador full-stack.",
+    emailLabel: "Email",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    closeLabel: "Cerrar",
+    viewOnGithub: "Ver en GitHub",
+    githubPending: "Enlace a GitHub pendiente de añadir.",
+    buildLabel: (mode) => `build: portfolio-v1 · modo actual: ${mode === "blue" ? "blue-team" : "red-team"}`,
+    cvFile: "/cv-victor-capdevila-rodriguez.pdf",
+  },
+  en: {
+    nav: { about: "About", skills: "Skills", projects: "Projects", experience: "Experience", contact: "Contact" },
+    heroRole: "Junior SOC Analyst · Cybersecurity Specialist · Full-Stack Developer",
+    heroText:
+      "Cybersecurity Specialist with an architectural foundation in Full-Stack Web Development. I bring a differential analytical capacity to understand software topologies from their source code, identifying underlying logical vulnerabilities and applying Secure Coding methodologies in CI/CD pipelines — oriented towards SOC integration and proactive risk mitigation.",
+    viewGithub: "View GitHub",
+    downloadCV: "Download CV",
+    contactBtn: "Contact",
+    statusBlue: "STATUS: monitoring",
+    statusRed: "STATUS: exploiting",
+    skillsEyebrow: "Technical skills",
+    projectsEyebrow: "Featured projects",
+    toComplete: "to be added",
+    experienceEyebrow: "Experience",
+    contactEyebrow: "Contact",
+    contactBlurb: "Open to opportunities as a SOC analyst, junior pentester, or full-stack developer.",
+    emailLabel: "Email",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    closeLabel: "Close",
+    viewOnGithub: "View on GitHub",
+    githubPending: "GitHub link coming soon.",
+    buildLabel: (mode) => `build: portfolio-v1 · current mode: ${mode === "blue" ? "blue-team" : "red-team"}`,
+    cvFile: "/cv-victor-capdevila-rodriguez-en.pdf",
+  },
+};
+
 const SKILL_GROUPS = [
   {
     mode: "blue",
     icon: ShieldCheck,
-    title: "Seguridad Defensiva (Blue Team) y SOC",
+    title: { es: "Seguridad Defensiva (Blue Team) y SOC", en: "Defensive Security & Forensics (Blue Team)" },
     items: ["Wazuh", "Splunk", "Wireshark", "Autopsy", "Volatility"],
   },
   {
     mode: "red",
     icon: ShieldAlert,
-    title: "Seguridad Ofensiva (Red Team) e Ing. Inversa",
+    title: { es: "Seguridad Ofensiva (Red Team) e Ing. Inversa", en: "Offensive Security & Auditing (Red Team)" },
     items: ["Metasploit", "Burp Suite", "Nmap", "Ghidra", "x64dbg", "Detect It Easy"],
   },
   {
     mode: "dev",
     icon: Code2,
-    title: "Desarrollo de Software y Automatización",
+    title: { es: "Desarrollo de Software y Automatización", en: "Software Development & Automation" },
     items: ["Python", "Java", "Node.js", "JavaScript", "React", "Tailwind CSS"],
   },
   {
     mode: "dev",
     icon: Network,
-    title: "Sistemas, Arquitectura y Herramientas",
+    title: { es: "Sistemas, Arquitectura y Herramientas", en: "Systems, Architecture & Tools" },
     items: ["Kali Linux", "Parrot OS", "Arch / CachyOS", "Docker", "Git/GitHub", "Power BI"],
   },
 ];
@@ -104,55 +157,90 @@ const PROJECTS = [
   {
     status: "listo",
     tag: "full-stack",
-    title: "Gestión de pedidos para restaurantes",
-    desc: "Arquitectura full-stack con Node.js + Express (API REST) y Sequelize sobre MySQL/PostgreSQL. Frontend en React + Tailwind con personalización dinámica de pedidos y seguimiento de stock. Endpoints CRUD con multer para carga de imágenes.",
+    title: { es: "Gestión de pedidos para restaurantes", en: "Restaurant Order Management App" },
+    desc: {
+      es: "Arquitectura full-stack con Node.js + Express (API REST) y Sequelize sobre MySQL/PostgreSQL. Frontend en React + Tailwind con personalización dinámica de pedidos y seguimiento de stock. Endpoints CRUD con multer para carga de imágenes.",
+      en: "Complete Full-Stack architecture utilizing Node.js and Express for the backend REST API, coupled with Sequelize ORM for scalable relational database management (MySQL/PostgreSQL). Highly responsive React and Tailwind CSS frontend, tailored to optimize kitchen workflows.",
+    },
     stack: ["Node.js", "Express", "Sequelize", "React", "Tailwind"],
     github: "https://github.com/vilacprd/tfg-daw",
-    detail: "Diseño y despliegue de una arquitectura Full-Stack completa: API REST en Node.js/Express, ORM Sequelize para la gestión escalable de bases de datos relacionales, y frontend en React + Tailwind adaptado a los flujos de trabajo de cocina. Incluye endpoints CRUD robustos para catálogos de productos, integración de multer para carga segura de imágenes, y una arquitectura modular documentada para facilitar futuros despliegues.",
+    detail: {
+      es: "Diseño y despliegue de una arquitectura Full-Stack completa: API REST en Node.js/Express, ORM Sequelize para la gestión escalable de bases de datos relacionales, y frontend en React + Tailwind adaptado a los flujos de trabajo de cocina. Incluye endpoints CRUD robustos para catálogos de productos, integración de multer para carga segura de imágenes, y una arquitectura modular documentada para facilitar futuros despliegues.",
+      en: "Designed and deployed a complete Full-Stack architecture utilizing Node.js and Express for the backend REST API, coupled with Sequelize ORM for scalable relational database management (MySQL/PostgreSQL). Engineered a highly responsive frontend interface using React and Tailwind CSS, tailored to optimize kitchen workflows with dynamic order customization and ingredient stock tracking. Implemented robust API endpoints for comprehensive CRUD operations across product catalogs, integrating multer for secure server-side file upload management and image handling. Established clean code practices and modular repository architecture using Git/GitHub, delivering comprehensive technical documentation to facilitate future deployments.",
+    },
   },
   {
     status: "placeholder",
     tag: "blue team",
-    title: "Mini-SOC: detección y correlación de eventos",
-    desc: "En desarrollo...",
-    stack: ["Por determinar..."],
+    title: { es: "Mini-SOC: detección y correlación de eventos", en: "Mini-SOC: Event Detection & Correlation" },
+    desc: {
+      es: "En desarrollo...",
+      en: "In progress...",
+    },
+    stack: ["..."],
     github: "",
-    detail: "Este proyecto está pendiente de documentar.",
+    detail: {
+      es: "Este proyecto está pendiente de documentar.",
+      en: "This project is still pending documentation.",
+    },
   },
   {
     status: "placeholder",
     tag: "red team",
-    title: "Write-up: CTF / laboratorio ofensivo",
-    desc: "En desarrollo...",
-    stack: ["Por determinar..."],
+    title: { es: "Write-up: CTF / laboratorio ofensivo", en: "Write-up: CTF / Offensive Lab" },
+    desc: {
+      es: "En desarrollo...",
+      en: "In progress...",
+    },
+    stack: ["..."],
     github: "",
-    detail: "Este write-up está pendiente.",
+    detail: {
+      es: "Este write-up está pendiente.",
+      en: "This write-up is still pending.",
+    },
   },
 ];
 
 const EXPERIENCE = [
   {
-    role: "Analista de Sistemas y Datos (Prácticas)",
-    org: "FIDESOL — Centro de Investigación Tecnológica",
-    date: "Oct 2024 – Ene 2025",
-    points: [
-      "Mantenimiento y desarrollo de infraestructuras de software en entorno de I+D bajo metodología Ágil (Scrum).",
-      "Diseño y despliegue de paneles analíticos avanzados con Power BI para inteligencia empresarial.",
-      "Experiencia en ecosistemas de investigación, entidad participante en la Red Cervera CICERO.",
-    ],
+    role: { es: "Analista de Sistemas y Datos (Prácticas)", en: "Systems and Data Analyst (Internship)" },
+    org: { es: "FIDESOL — Centro de Investigación Tecnológica", en: "FIDESOL (Technological Research Center)" },
+    date: { es: "Oct 2024 – Ene 2025", en: "Oct 2024 – Jan 2025" },
+    points: {
+      es: [
+        "Mantenimiento y desarrollo de infraestructuras de software en entorno de I+D bajo metodología Ágil (Scrum).",
+        "Diseño y despliegue de paneles analíticos avanzados con Power BI para inteligencia empresarial.",
+        "Experiencia en ecosistemas de investigación, entidad participante en la Red Cervera CICERO.",
+      ],
+      en: [
+        "Actively participated in the maintenance and development lifecycle of software infrastructures operating under a high-level technological R&D environment, integrated into Agile development methodologies (Scrum).",
+        "Engineered and deployed advanced analytical dashboards using Power BI, extracting, modeling, and correlating complex data flows to ensure information integrity and provide business intelligence for strategic decision-making processes.",
+        "Gained operational exposure to advanced technological architectures and innovative research ecosystems (entity participating in national security projects such as the Cervera CICERO Network).",
+      ],
+    },
   },
 ];
 
 const EDUCATION = [
-  { title: "Especialización en Ciberseguridad en Entornos de las TI", org: "FP Mercedarias", date: "2025 – 2026" },
-  { title: "Técnico Superior en Desarrollo de Aplicaciones Web", org: "IES Zaidín Vergeles", date: "2021 – 2024" },
+  {
+    title: { es: "Especialización en Ciberseguridad en Entornos de las TI", en: "Specialisation Course in Cybersecurity in I.T." },
+    org: "FP Mercedarias",
+    date: "2025 – 2026",
+  },
+  {
+    title: { es: "Técnico Superior en Desarrollo de Aplicaciones Web", en: "Advanced Technician Degree in Web Application Development" },
+    org: "IES Zaidín Vergeles",
+    date: "2021 – 2024",
+  },
 ];
 
 export default function Portfolio() {
   const [mode, setMode] = useState("blue"); // "blue" | "red"
+  const [lang, setLang] = useState("es"); // "es" | "en"
   const [selectedProject, setSelectedProject] = useState(null);
   const boot = useTypewriter(BOOT_LINE);
   const accent = mode === "blue" ? TOKENS.blue : TOKENS.amber;
+  const t = UI[lang];
 
   return (
     <div
@@ -164,19 +252,22 @@ export default function Portfolio() {
         className="sticky top-0 z-20 backdrop-blur border-b"
         style={{ borderColor: TOKENS.line, backgroundColor: `${TOKENS.ink}CC` }}
       >
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 font-mono text-sm tracking-widest">
             <Terminal size={16} style={{ color: accent }} />
             VCR
           </div>
           <nav className="hidden md:flex items-center gap-6 font-mono text-xs uppercase tracking-widest" style={{ color: TOKENS.muted }}>
-            <a href="#about" className="hover:text-current transition">Sobre mí</a>
-            <a href="#skills" className="hover:text-current transition">Skills</a>
-            <a href="#projects" className="hover:text-current transition">Proyectos</a>
-            <a href="#experience" className="hover:text-current transition">Experiencia</a>
-            <a href="#contact" className="hover:text-current transition">Contacto</a>
+            <a href="#about" className="hover:text-current transition">{t.nav.about}</a>
+            <a href="#skills" className="hover:text-current transition">{t.nav.skills}</a>
+            <a href="#projects" className="hover:text-current transition">{t.nav.projects}</a>
+            <a href="#experience" className="hover:text-current transition">{t.nav.experience}</a>
+            <a href="#contact" className="hover:text-current transition">{t.nav.contact}</a>
           </nav>
-          <ModeToggle mode={mode} setMode={setMode} />
+          <div className="flex items-center gap-3">
+            <LangToggle lang={lang} setLang={setLang} />
+            <ModeToggle mode={mode} setMode={setMode} />
+          </div>
         </div>
       </header>
 
@@ -197,13 +288,11 @@ export default function Portfolio() {
         </h1>
 
         <p className="text-lg md:text-xl mb-8" style={{ color: TOKENS.muted }}>
-          Analista SOC Junior · Especialista en Ciberseguridad · Desarrollador Full-Stack
+          {t.heroRole}
         </p>
 
         <p className="max-w-2xl text-base leading-relaxed mb-10">
-          Combino una mentalidad ofensiva y defensiva para la mitigación proactiva de riesgos.
-          Mi formación en desarrollo de software me da una ventaja analítica diferencial: entender
-          las vulnerabilidades lógicas de una topología desde su propio código fuente.
+          {t.heroText}
         </p>
 
         <div className="flex flex-wrap items-center gap-4">
@@ -212,46 +301,46 @@ export default function Portfolio() {
             className="flex items-center gap-2 px-5 py-2.5 rounded font-mono text-sm transition"
             style={{ backgroundColor: accent, color: TOKENS.ink }}
           >
-            <Github size={16} /> Ver GitHub
+            <Github size={16} /> {t.viewGithub}
           </a>
           <a
-            href="/cv-victor-capdevila.pdf"
+            href={t.cvFile}
             download
             className="flex items-center gap-2 px-5 py-2.5 rounded font-mono text-sm border transition"
             style={{ borderColor: TOKENS.line, color: TOKENS.text }}
           >
-            <Download size={16} /> Descargar CV
+            <Download size={16} /> {t.downloadCV}
           </a>
           <a
             href="#contact"
             className="flex items-center gap-2 px-5 py-2.5 rounded font-mono text-sm border transition"
             style={{ borderColor: TOKENS.line, color: TOKENS.text }}
           >
-            <Mail size={16} /> Contactar
+            <Mail size={16} /> {t.contactBtn}
           </a>
           <div className="flex items-center font-mono text-xs" style={{ color: TOKENS.muted }}>
             <StatusDot active accent={accent} />
-            {mode === "blue" ? "STATUS: monitorizando" : "STATUS: explotando"}
+            {mode === "blue" ? t.statusBlue : t.statusRed}
           </div>
         </div>
       </section>
 
       {/* SKILLS */}
       <section id="skills" className="max-w-5xl mx-auto px-6 py-20 border-t" style={{ borderColor: TOKENS.line }}>
-        <Eyebrow accent={accent}>Habilidades técnicas</Eyebrow>
+        <Eyebrow accent={accent}>{t.skillsEyebrow}</Eyebrow>
         <div className="grid md:grid-cols-2 gap-4">
           {SKILL_GROUPS.map((g) => {
             const Icon = g.icon;
             const groupAccent = g.mode === "blue" ? TOKENS.blue : g.mode === "red" ? TOKENS.amber : TOKENS.muted;
             return (
               <div
-                key={g.title}
+                key={g.title.es}
                 className="p-5 rounded"
                 style={{ backgroundColor: TOKENS.panel, borderLeft: `3px solid ${groupAccent}` }}
               >
                 <div className="flex items-center gap-2 mb-3">
                   <Icon size={16} style={{ color: groupAccent }} />
-                  <h3 className="font-semibold text-sm">{g.title}</h3>
+                  <h3 className="font-semibold text-sm">{g.title[lang]}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {g.items.map((s) => (
@@ -272,11 +361,11 @@ export default function Portfolio() {
 
       {/* PROJECTS */}
       <section id="projects" className="max-w-5xl mx-auto px-6 py-20 border-t" style={{ borderColor: TOKENS.line }}>
-        <Eyebrow accent={accent}>Proyectos destacados</Eyebrow>
+        <Eyebrow accent={accent}>{t.projectsEyebrow}</Eyebrow>
         <div className="grid md:grid-cols-3 gap-5">
           {PROJECTS.map((p) => (
             <div
-              key={p.title}
+              key={p.title.es}
               onClick={() => setSelectedProject(p)}
               className="p-5 rounded flex flex-col cursor-pointer transition hover:opacity-90"
               style={{
@@ -291,13 +380,13 @@ export default function Portfolio() {
                 </span>
                 {p.status === "placeholder" && (
                   <span className="font-mono text-[10px] uppercase tracking-widest" style={{ color: TOKENS.muted }}>
-                    por completar
+                    {t.toComplete}
                   </span>
                 )}
               </div>
-              <h3 className="font-semibold mb-2">{p.title}</h3>
+              <h3 className="font-semibold mb-2">{p.title[lang]}</h3>
               <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: TOKENS.muted }}>
-                {p.desc}
+                {p.desc[lang]}
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {p.stack.map((s) => (
@@ -313,16 +402,16 @@ export default function Portfolio() {
 
       {/* EXPERIENCE */}
       <section id="experience" className="max-w-5xl mx-auto px-6 py-20 border-t" style={{ borderColor: TOKENS.line }}>
-        <Eyebrow accent={accent}>Experiencia</Eyebrow>
+        <Eyebrow accent={accent}>{t.experienceEyebrow}</Eyebrow>
         {EXPERIENCE.map((e) => (
-          <div key={e.role} className="mb-8">
+          <div key={e.role.es} className="mb-8">
             <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-              <h3 className="font-semibold">{e.role}</h3>
-              <span className="font-mono text-xs" style={{ color: TOKENS.muted }}>{e.date}</span>
+              <h3 className="font-semibold">{e.role[lang]}</h3>
+              <span className="font-mono text-xs" style={{ color: TOKENS.muted }}>{e.date[lang]}</span>
             </div>
-            <p className="text-sm mb-3" style={{ color: accent }}>{e.org}</p>
+            <p className="text-sm mb-3" style={{ color: accent }}>{e.org[lang]}</p>
             <ul className="space-y-2">
-              {e.points.map((pt) => (
+              {e.points[lang].map((pt) => (
                 <li key={pt} className="flex gap-2 text-sm leading-relaxed" style={{ color: TOKENS.muted }}>
                   <ChevronRight size={14} className="shrink-0 mt-0.5" style={{ color: accent }} />
                   {pt}
@@ -334,10 +423,10 @@ export default function Portfolio() {
 
         <div className="mt-10 grid sm:grid-cols-2 gap-4">
           {EDUCATION.map((ed) => (
-            <div key={ed.title} className="p-4 rounded flex gap-3" style={{ backgroundColor: TOKENS.panel }}>
+            <div key={ed.title.es} className="p-4 rounded flex gap-3" style={{ backgroundColor: TOKENS.panel }}>
               <GraduationCap size={18} className="shrink-0 mt-0.5" style={{ color: accent }} />
               <div>
-                <p className="text-sm font-medium">{ed.title}</p>
+                <p className="text-sm font-medium">{ed.title[lang]}</p>
                 <p className="font-mono text-xs" style={{ color: TOKENS.muted }}>{ed.org} · {ed.date}</p>
               </div>
             </div>
@@ -347,23 +436,23 @@ export default function Portfolio() {
 
       {/* CONTACT */}
       <footer id="contact" className="max-w-5xl mx-auto px-6 py-20 border-t" style={{ borderColor: TOKENS.line }}>
-        <Eyebrow accent={accent}>Contacto</Eyebrow>
+        <Eyebrow accent={accent}>{t.contactEyebrow}</Eyebrow>
         <p className="max-w-xl mb-8" style={{ color: TOKENS.muted }}>
-          Abierto a oportunidades como analista SOC, pentester junior o desarrollador full-stack.
+          {t.contactBlurb}
         </p>
         <div className="flex flex-wrap gap-4">
           <a href="mailto:capdevilaavictorr@gmail.com" className="flex items-center gap-2 font-mono text-sm px-4 py-2 rounded border" style={{ borderColor: TOKENS.line }}>
-            <Mail size={16} /> Email
+            <Mail size={16} /> {t.emailLabel}
           </a>
           <a href="https://github.com/vilacprd" className="flex items-center gap-2 font-mono text-sm px-4 py-2 rounded border" style={{ borderColor: TOKENS.line }}>
-            <Github size={16} /> GitHub
+            <Github size={16} /> {t.githubLabel}
           </a>
           <a href="https://www.linkedin.com/in/v%C3%ADctor-capdevila-rodr%C3%ADguez-8a873b257/" className="flex items-center gap-2 font-mono text-sm px-4 py-2 rounded border" style={{ borderColor: TOKENS.line }}>
-            <Linkedin size={16} /> LinkedIn
+            <Linkedin size={16} /> {t.linkedinLabel}
           </a>
         </div>
         <div className="mt-12 flex items-center gap-2 font-mono text-[10px]" style={{ color: TOKENS.muted }}>
-          <Fingerprint size={12} /> build: portfolio-v1 · modo actual: {mode === "blue" ? "blue-team" : "red-team"}
+          <Fingerprint size={12} /> {t.buildLabel(mode)}
         </div>
       </footer>
 
@@ -382,7 +471,7 @@ export default function Portfolio() {
               onClick={() => setSelectedProject(null)}
               className="absolute top-4 right-4 cursor-pointer"
               style={{ color: TOKENS.muted }}
-              aria-label="Cerrar"
+              aria-label={t.closeLabel}
             >
               <X size={18} />
             </button>
@@ -394,10 +483,10 @@ export default function Portfolio() {
               {selectedProject.tag}
             </span>
 
-            <h3 className="text-lg font-semibold mt-3 mb-3">{selectedProject.title}</h3>
+            <h3 className="text-lg font-semibold mt-3 mb-3">{selectedProject.title[lang]}</h3>
 
             <p className="text-sm leading-relaxed mb-5" style={{ color: TOKENS.muted }}>
-              {selectedProject.detail}
+              {selectedProject.detail[lang]}
             </p>
 
             <div className="flex flex-wrap gap-1.5 mb-6">
@@ -420,11 +509,11 @@ export default function Portfolio() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded font-mono text-sm"
                 style={{ backgroundColor: accent, color: TOKENS.ink }}
               >
-                <ExternalLink size={14} /> Ver en GitHub
+                <ExternalLink size={14} /> {t.viewOnGithub}
               </a>
             ) : (
               <p className="font-mono text-xs" style={{ color: TOKENS.muted }}>
-                Enlace a GitHub pendiente de añadir.
+                {t.githubPending}
               </p>
             )}
           </div>
@@ -461,6 +550,38 @@ function ModeToggle({ mode, setMode }) {
         }}
       >
         <ShieldAlert size={11} /> red
+      </button>
+    </div>
+  );
+}
+
+function LangToggle({ lang, setLang }) {
+  return (
+    <div
+      className="flex items-center rounded-full p-1 font-mono text-[10px] uppercase tracking-widest"
+      style={{ backgroundColor: TOKENS.panel, border: `1px solid ${TOKENS.line}` }}
+      role="group"
+      aria-label="Switch language / Cambiar idioma"
+    >
+      <button
+        onClick={() => setLang("es")}
+        className="px-3 py-1.5 rounded-full transition cursor-pointer"
+        style={{
+          backgroundColor: lang === "es" ? TOKENS.text : "transparent",
+          color: lang === "es" ? TOKENS.ink : TOKENS.muted,
+        }}
+      >
+        ES
+      </button>
+      <button
+        onClick={() => setLang("en")}
+        className="px-3 py-1.5 rounded-full transition cursor-pointer"
+        style={{
+          backgroundColor: lang === "en" ? TOKENS.text : "transparent",
+          color: lang === "en" ? TOKENS.ink : TOKENS.muted,
+        }}
+      >
+        EN
       </button>
     </div>
   );
