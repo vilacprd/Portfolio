@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-  Terminal, ShieldCheck, ShieldAlert, Mail,
+  Terminal, ShieldCheck, ShieldAlert, Mail, Download,
   Radio, Fingerprint, Network, Code2, GraduationCap, ChevronRight,
 } from "lucide-react";
 
@@ -206,6 +206,14 @@ export default function Portfolio() {
             style={{ backgroundColor: accent, color: TOKENS.ink }}
           >
             <Github size={16} /> Ver GitHub
+          </a>
+          <a
+            href="/cv-victor-capdevila-rodriguez.pdf"
+            download
+            className="flex items-center gap-2 px-5 py-2.5 rounded font-mono text-sm border transition"
+            style={{ borderColor: TOKENS.line, color: TOKENS.text }}
+          >
+            <Download size={16} /> Descargar CV
           </a>
           <a
             href="#contact"
