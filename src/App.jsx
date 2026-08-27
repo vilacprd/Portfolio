@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-  Terminal, ShieldCheck, ShieldAlert, Mail, Download,
+  Terminal, ShieldCheck, ShieldAlert, Mail, Download, ExternalLink, X,
   Radio, Fingerprint, Network, Code2, GraduationCap, ChevronRight,
 } from "lucide-react";
 
@@ -107,20 +107,26 @@ const PROJECTS = [
     title: "Gestión de pedidos para restaurantes",
     desc: "Arquitectura full-stack con Node.js + Express (API REST) y Sequelize sobre MySQL/PostgreSQL. Frontend en React + Tailwind con personalización dinámica de pedidos y seguimiento de stock. Endpoints CRUD con multer para carga de imágenes.",
     stack: ["Node.js", "Express", "Sequelize", "React", "Tailwind"],
+    github: "https://github.com/vilacprd/tfg-daw",
+    detail: "Diseño y despliegue de una arquitectura Full-Stack completa: API REST en Node.js/Express, ORM Sequelize para la gestión escalable de bases de datos relacionales, y frontend en React + Tailwind adaptado a los flujos de trabajo de cocina. Incluye endpoints CRUD robustos para catálogos de productos, integración de multer para carga segura de imágenes, y una arquitectura modular documentada para facilitar futuros despliegues.",
   },
   {
     status: "placeholder",
     tag: "blue team",
     title: "Mini-SOC: detección y correlación de eventos",
-    desc: "Espacio reservado — despliega Wazuh/Splunk en Docker, genera logs simulados y documenta un caso de detección de incidente de principio a fin.",
-    stack: ["Wazuh", "Docker", "SIEM"],
+    desc: "En desarrollo...",
+    stack: ["Por determinar..."],
+    github: "",
+    detail: "Este proyecto está pendiente de documentar.",
   },
   {
     status: "placeholder",
     tag: "red team",
     title: "Write-up: CTF / laboratorio ofensivo",
-    desc: "Espacio reservado — documenta un reto de TryHackMe, HackTheBox o VulnHub: reconocimiento, explotación y remediación, con capturas de Burp Suite y Nmap.",
-    stack: ["Burp Suite", "Nmap", "Metasploit"],
+    desc: "En desarrollo...",
+    stack: ["Por determinar..."],
+    github: "",
+    detail: "Este write-up está pendiente.",
   },
 ];
 
@@ -144,6 +150,7 @@ const EDUCATION = [
 
 export default function Portfolio() {
   const [mode, setMode] = useState("blue"); // "blue" | "red"
+  const [selectedProject, setSelectedProject] = useState(null);
   const boot = useTypewriter(BOOT_LINE);
   const accent = mode === "blue" ? TOKENS.blue : TOKENS.amber;
 
@@ -208,7 +215,7 @@ export default function Portfolio() {
             <Github size={16} /> Ver GitHub
           </a>
           <a
-            href="/cv-victor-capdevila-rodriguez.pdf"
+            href="/cv-victor-capdevila.pdf"
             download
             className="flex items-center gap-2 px-5 py-2.5 rounded font-mono text-sm border transition"
             style={{ borderColor: TOKENS.line, color: TOKENS.text }}
@@ -270,7 +277,8 @@ export default function Portfolio() {
           {PROJECTS.map((p) => (
             <div
               key={p.title}
-              className="p-5 rounded flex flex-col"
+              onClick={() => setSelectedProject(p)}
+              className="p-5 rounded flex flex-col cursor-pointer transition hover:opacity-90"
               style={{
                 backgroundColor: TOKENS.panel,
                 border: p.status === "placeholder" ? `1px dashed ${TOKENS.line}` : `1px solid ${TOKENS.line}`,
@@ -358,6 +366,70 @@ export default function Portfolio() {
           <Fingerprint size={12} /> build: portfolio-v1 · modo actual: {mode === "blue" ? "blue-team" : "red-team"}
         </div>
       </footer>
+
+      {selectedProject && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
+          onClick={() => setSelectedProject(null)}
+        >
+          <div
+            className="max-w-lg w-full rounded p-6 relative"
+            style={{ backgroundColor: TOKENS.panel, border: `1px solid ${TOKENS.line}` }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-4 right-4 cursor-pointer"
+              style={{ color: TOKENS.muted }}
+              aria-label="Cerrar"
+            >
+              <X size={18} />
+            </button>
+
+            <span
+              className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded"
+              style={{ backgroundColor: TOKENS.panelAlt, color: accent }}
+            >
+              {selectedProject.tag}
+            </span>
+
+            <h3 className="text-lg font-semibold mt-3 mb-3">{selectedProject.title}</h3>
+
+            <p className="text-sm leading-relaxed mb-5" style={{ color: TOKENS.muted }}>
+              {selectedProject.detail}
+            </p>
+
+            <div className="flex flex-wrap gap-1.5 mb-6">
+              {selectedProject.stack.map((s) => (
+                <span
+                  key={s}
+                  className="font-mono text-xs px-2 py-1 rounded"
+                  style={{ backgroundColor: TOKENS.panelAlt, color: TOKENS.muted }}
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
+
+            {selectedProject.github ? (
+              <a
+                href={selectedProject.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded font-mono text-sm"
+                style={{ backgroundColor: accent, color: TOKENS.ink }}
+              >
+                <ExternalLink size={14} /> Ver en GitHub
+              </a>
+            ) : (
+              <p className="font-mono text-xs" style={{ color: TOKENS.muted }}>
+                Enlace a GitHub pendiente de añadir.
+              </p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
