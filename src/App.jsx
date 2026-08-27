@@ -231,6 +231,11 @@ const EDUCATION = [
     org: "IES Zaidín Vergeles",
     date: "2021 – 2024",
   },
+  {
+    title: { es: "Estudios Profesionales de Música (Violín)", en: "Professional Music Studies (Violin)" },
+    org: "Conservatorio profesional Ángel Barrios",
+    date: "2010 – 2023",
+  },
 ];
 
 export default function Portfolio() {
