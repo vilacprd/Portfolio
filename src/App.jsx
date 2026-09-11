@@ -199,14 +199,14 @@ const PROJECTS = [
     tag: "blue team",
     title: { es: "Mini-SOC: detección y correlación de eventos", en: "Mini-SOC: Event Detection & Correlation" },
     desc: {
-      es: "Espacio reservado — despliega Wazuh/Splunk en Docker, genera logs simulados y documenta un caso de detección de incidente de principio a fin.",
-      en: "Reserved slot — deploy Wazuh/Splunk in Docker, generate simulated logs, and document an incident detection case from start to finish.",
+      es: "En proceso...",
+      en: "In progress...",
     },
-    stack: ["Wazuh", "Docker", "SIEM"],
+    stack: ["..."],
     github: "",
     detail: {
-      es: "Este proyecto está pendiente de documentar. Aquí puedes describir el objetivo del laboratorio, las reglas de correlación creadas, capturas de los dashboards y el caso de detección de incidente paso a paso.",
-      en: "This project is still pending documentation. Here you can describe the lab's objective, the correlation rules created, dashboard screenshots, and the incident detection case step by step.",
+      es: "...",
+      en: "...",
     },
   },
   {
@@ -214,14 +214,14 @@ const PROJECTS = [
     tag: "red team",
     title: { es: "Write-up: CTF / laboratorio ofensivo", en: "Write-up: CTF / Offensive Lab" },
     desc: {
-      es: "Espacio reservado — documenta un reto de TryHackMe, HackTheBox o VulnHub: reconocimiento, explotación y remediación, con capturas de Burp Suite y Nmap.",
-      en: "Reserved slot — document a TryHackMe, HackTheBox, or VulnHub challenge: recon, exploitation, and remediation, with Burp Suite and Nmap screenshots.",
+      es: "En proceso...",
+      en: "In progress...",
     },
-    stack: ["Burp Suite", "Nmap", "Metasploit"],
+    stack: ["..."],
     github: "",
     detail: {
-      es: "Este write-up está pendiente. Aquí puedes documentar reconocimiento, vector de explotación, capturas de Burp Suite/Nmap y la remediación propuesta, con la misma estructura que un informe de pentest real.",
-      en: "This write-up is still pending. Here you can document recon, the exploitation vector, Burp Suite/Nmap screenshots, and the proposed remediation, following the same structure as a real pentest report.",
+      es: "...",
+      en: "...",
     },
   },
 ];
