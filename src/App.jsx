@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import {
   Terminal, ShieldCheck, ShieldAlert, Mail, Download, ExternalLink, X,
-  Radio, Fingerprint, Network, Code2, GraduationCap, ChevronRight,
+  Radio, Fingerprint, Network, Code2, GraduationCap, ChevronRight, Award, FileText,
 } from "lucide-react";
 
-
+// Lucide 1.0 eliminó los iconos de marca (GitHub, LinkedIn...) por temas de
+// trademark, así que los sustituimos por SVGs propios con el mismo estilo.
 function Github({ size = 16, ...props }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" {...props}>
@@ -74,7 +75,7 @@ function StatusDot({ active, accent }) {
 
 const UI = {
   es: {
-    nav: { about: "Sobre mí", skills: "Skills", projects: "Proyectos", experience: "Experiencia", contact: "Contacto" },
+    nav: { about: "Sobre mí", skills: "Skills", certifications: "Certificaciones", projects: "Proyectos", experience: "Experiencia", contact: "Contacto" },
     heroRole: "Analista SOC Junior · Especialista en Ciberseguridad · Desarrollador Full-Stack",
     heroText:
       "Combino una mentalidad ofensiva y defensiva para la mitigación proactiva de riesgos. Mi formación en desarrollo de software me da una ventaja analítica diferencial: entender las vulnerabilidades lógicas de una topología desde su propio código fuente.",
@@ -82,8 +83,13 @@ const UI = {
     downloadCV: "Descargar CV",
     contactBtn: "Contactar",
     statusBlue: "STATUS: monitorizando",
-    statusRed: "STATUS: exploiting",
+    statusRed: "STATUS: explotando",
     skillsEyebrow: "Habilidades técnicas",
+    certificationsEyebrow: "Certificaciones",
+    courseTag: "curso",
+    certTag: "certificación",
+    viewCertificate: "Ver certificado",
+    certificatePending: "Certificado en PDF pendiente de añadir.",
     projectsEyebrow: "Proyectos destacados",
     toComplete: "por completar",
     experienceEyebrow: "Experiencia",
@@ -96,10 +102,10 @@ const UI = {
     viewOnGithub: "Ver en GitHub",
     githubPending: "Enlace a GitHub pendiente de añadir.",
     buildLabel: (mode) => `build: portfolio-v1 · modo actual: ${mode === "blue" ? "blue-team" : "red-team"}`,
-    cvFile: "/cv-victor-capdevila-rodriguez.pdf",
+    cvFile: "/cv-victor-capdevila.pdf",
   },
   en: {
-    nav: { about: "About", skills: "Skills", projects: "Projects", experience: "Experience", contact: "Contact" },
+    nav: { about: "About", skills: "Skills", certifications: "Certifications", projects: "Projects", experience: "Experience", contact: "Contact" },
     heroRole: "Junior SOC Analyst · Cybersecurity Specialist · Full-Stack Developer",
     heroText:
       "Cybersecurity Specialist with an architectural foundation in Full-Stack Web Development. I bring a differential analytical capacity to understand software topologies from their source code, identifying underlying logical vulnerabilities and applying Secure Coding methodologies in CI/CD pipelines — oriented towards SOC integration and proactive risk mitigation.",
@@ -109,6 +115,11 @@ const UI = {
     statusBlue: "STATUS: monitoring",
     statusRed: "STATUS: exploiting",
     skillsEyebrow: "Technical skills",
+    certificationsEyebrow: "Certifications",
+    courseTag: "course",
+    certTag: "certification",
+    viewCertificate: "View certificate",
+    certificatePending: "Certificate PDF coming soon.",
     projectsEyebrow: "Featured projects",
     toComplete: "to be added",
     experienceEyebrow: "Experience",
@@ -121,7 +132,7 @@ const UI = {
     viewOnGithub: "View on GitHub",
     githubPending: "GitHub link coming soon.",
     buildLabel: (mode) => `build: portfolio-v1 · current mode: ${mode === "blue" ? "blue-team" : "red-team"}`,
-    cvFile: "/cv-victor-capdevila-rodriguez-en.pdf",
+    cvFile: "/cv-victor-capdevila-en.pdf",
   },
 };
 
@@ -152,6 +163,21 @@ const SKILL_GROUPS = [
   },
 ];
 
+const CERTIFICATIONS = [
+  {
+    type: "course",
+    title: "Google AI Essentials",
+    issuer: "Google",
+    date: "2026",
+    desc: {
+      es: "Curso introductorio sobre fundamentos de IA generativa: cómo funcionan estas herramientas, escritura de prompts efectivos y uso responsable de la IA en el trabajo diario.",
+      en: "Introductory course on generative AI fundamentals: how these tools work, writing effective prompts, and using AI responsibly in everyday work.",
+    },
+    pdf: "/certs/google-ai-essentials.pdf",
+    verifyUrl: "",
+  },
+];
+
 const PROJECTS = [
   {
     status: "listo",
@@ -162,7 +188,7 @@ const PROJECTS = [
       en: "Complete Full-Stack architecture utilizing Node.js and Express for the backend REST API, coupled with Sequelize ORM for scalable relational database management (MySQL/PostgreSQL). Highly responsive React and Tailwind CSS frontend, tailored to optimize kitchen workflows.",
     },
     stack: ["Node.js", "Express", "Sequelize", "React", "Tailwind"],
-    github: "https://github.com/vilacprd/tfg-daw",
+    github: "https://github.com/vilacprd",
     detail: {
       es: "Diseño y despliegue de una arquitectura Full-Stack completa: API REST en Node.js/Express, ORM Sequelize para la gestión escalable de bases de datos relacionales, y frontend en React + Tailwind adaptado a los flujos de trabajo de cocina. Incluye endpoints CRUD robustos para catálogos de productos, integración de multer para carga segura de imágenes, y una arquitectura modular documentada para facilitar futuros despliegues.",
       en: "Designed and deployed a complete Full-Stack architecture utilizing Node.js and Express for the backend REST API, coupled with Sequelize ORM for scalable relational database management (MySQL/PostgreSQL). Engineered a highly responsive frontend interface using React and Tailwind CSS, tailored to optimize kitchen workflows with dynamic order customization and ingredient stock tracking. Implemented robust API endpoints for comprehensive CRUD operations across product catalogs, integrating multer for secure server-side file upload management and image handling. Established clean code practices and modular repository architecture using Git/GitHub, delivering comprehensive technical documentation to facilitate future deployments.",
@@ -173,14 +199,14 @@ const PROJECTS = [
     tag: "blue team",
     title: { es: "Mini-SOC: detección y correlación de eventos", en: "Mini-SOC: Event Detection & Correlation" },
     desc: {
-      es: "En desarrollo...",
-      en: "In progress...",
+      es: "Espacio reservado — despliega Wazuh/Splunk en Docker, genera logs simulados y documenta un caso de detección de incidente de principio a fin.",
+      en: "Reserved slot — deploy Wazuh/Splunk in Docker, generate simulated logs, and document an incident detection case from start to finish.",
     },
-    stack: ["..."],
+    stack: ["Wazuh", "Docker", "SIEM"],
     github: "",
     detail: {
-      es: "Este proyecto está pendiente de documentar.",
-      en: "This project is still pending documentation.",
+      es: "Este proyecto está pendiente de documentar. Aquí puedes describir el objetivo del laboratorio, las reglas de correlación creadas, capturas de los dashboards y el caso de detección de incidente paso a paso.",
+      en: "This project is still pending documentation. Here you can describe the lab's objective, the correlation rules created, dashboard screenshots, and the incident detection case step by step.",
     },
   },
   {
@@ -188,14 +214,14 @@ const PROJECTS = [
     tag: "red team",
     title: { es: "Write-up: CTF / laboratorio ofensivo", en: "Write-up: CTF / Offensive Lab" },
     desc: {
-      es: "En desarrollo...",
-      en: "In progress...",
+      es: "Espacio reservado — documenta un reto de TryHackMe, HackTheBox o VulnHub: reconocimiento, explotación y remediación, con capturas de Burp Suite y Nmap.",
+      en: "Reserved slot — document a TryHackMe, HackTheBox, or VulnHub challenge: recon, exploitation, and remediation, with Burp Suite and Nmap screenshots.",
     },
-    stack: ["..."],
+    stack: ["Burp Suite", "Nmap", "Metasploit"],
     github: "",
     detail: {
-      es: "Este write-up está pendiente.",
-      en: "This write-up is still pending.",
+      es: "Este write-up está pendiente. Aquí puedes documentar reconocimiento, vector de explotación, capturas de Burp Suite/Nmap y la remediación propuesta, con la misma estructura que un informe de pentest real.",
+      en: "This write-up is still pending. Here you can document recon, the exploitation vector, Burp Suite/Nmap screenshots, and the proposed remediation, following the same structure as a real pentest report.",
     },
   },
 ];
@@ -231,17 +257,13 @@ const EDUCATION = [
     org: "IES Zaidín Vergeles",
     date: "2021 – 2024",
   },
-  {
-    title: { es: "Estudios Profesionales de Música (Violín)", en: "Professional Music Studies (Violin)" },
-    org: "Conservatorio profesional Ángel Barrios",
-    date: "2010 – 2023",
-  },
 ];
 
 export default function Portfolio() {
   const [mode, setMode] = useState("blue"); // "blue" | "red"
   const [lang, setLang] = useState("es"); // "es" | "en"
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedCert, setSelectedCert] = useState(null);
   const boot = useTypewriter(BOOT_LINE);
   const accent = mode === "blue" ? TOKENS.blue : TOKENS.amber;
   const t = UI[lang];
@@ -264,6 +286,7 @@ export default function Portfolio() {
           <nav className="hidden md:flex items-center gap-6 font-mono text-xs uppercase tracking-widest" style={{ color: TOKENS.muted }}>
             <a href="#about" className="hover:text-current transition">{t.nav.about}</a>
             <a href="#skills" className="hover:text-current transition">{t.nav.skills}</a>
+            <a href="#certifications" className="hover:text-current transition">{t.nav.certifications}</a>
             <a href="#projects" className="hover:text-current transition">{t.nav.projects}</a>
             <a href="#experience" className="hover:text-current transition">{t.nav.experience}</a>
             <a href="#contact" className="hover:text-current transition">{t.nav.contact}</a>
@@ -360,6 +383,36 @@ export default function Portfolio() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* CERTIFICATIONS */}
+      <section id="certifications" className="max-w-5xl mx-auto px-6 py-20 border-t" style={{ borderColor: TOKENS.line }}>
+        <Eyebrow accent={accent}>{t.certificationsEyebrow}</Eyebrow>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {CERTIFICATIONS.map((c) => (
+            <div
+              key={c.title}
+              onClick={() => setSelectedCert(c)}
+              className="p-4 rounded flex items-start gap-3 cursor-pointer transition hover:opacity-90"
+              style={{ backgroundColor: TOKENS.panel, border: `1px solid ${TOKENS.line}` }}
+            >
+              <Award size={20} className="shrink-0 mt-0.5" style={{ color: c.type === "certification" ? accent : TOKENS.muted }} />
+              <div>
+                <span
+                  className="font-mono text-[9px] uppercase tracking-widest px-1.5 py-0.5 rounded"
+                  style={{
+                    backgroundColor: TOKENS.panelAlt,
+                    color: c.type === "certification" ? accent : TOKENS.muted,
+                  }}
+                >
+                  {c.type === "certification" ? t.certTag : t.courseTag}
+                </span>
+                <p className="text-sm font-medium mt-1.5">{c.title}</p>
+                <p className="font-mono text-xs" style={{ color: TOKENS.muted }}>{c.issuer} · {c.date}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -518,6 +571,78 @@ export default function Portfolio() {
             ) : (
               <p className="font-mono text-xs" style={{ color: TOKENS.muted }}>
                 {t.githubPending}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {selectedCert && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
+          onClick={() => setSelectedCert(null)}
+        >
+          <div
+            className="max-w-lg w-full rounded p-6 relative"
+            style={{ backgroundColor: TOKENS.panel, border: `1px solid ${TOKENS.line}` }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedCert(null)}
+              className="absolute top-4 right-4 cursor-pointer"
+              style={{ color: TOKENS.muted }}
+              aria-label={t.closeLabel}
+            >
+              <X size={18} />
+            </button>
+
+            <span
+              className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded"
+              style={{
+                backgroundColor: TOKENS.panelAlt,
+                color: selectedCert.type === "certification" ? accent : TOKENS.muted,
+              }}
+            >
+              {selectedCert.type === "certification" ? t.certTag : t.courseTag}
+            </span>
+
+            <h3 className="text-lg font-semibold mt-3 mb-1">{selectedCert.title}</h3>
+            <p className="font-mono text-xs mb-4" style={{ color: TOKENS.muted }}>
+              {selectedCert.issuer} · {selectedCert.date}
+            </p>
+
+            <p className="text-sm leading-relaxed mb-6" style={{ color: TOKENS.muted }}>
+              {selectedCert.desc[lang]}
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              {selectedCert.pdf && (
+                <a
+                  href={selectedCert.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded font-mono text-sm"
+                  style={{ backgroundColor: accent, color: TOKENS.ink }}
+                >
+                  <FileText size={14} /> {t.viewCertificate}
+                </a>
+              )}
+              {selectedCert.verifyUrl && (
+                <a
+                  href={selectedCert.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded font-mono text-sm border"
+                  style={{ borderColor: TOKENS.line, color: TOKENS.text }}
+                >
+                  <ExternalLink size={14} /> {lang === "es" ? "Verificar" : "Verify"}
+                </a>
+              )}
+            </div>
+            {!selectedCert.pdf && (
+              <p className="font-mono text-xs" style={{ color: TOKENS.muted }}>
+                {t.certificatePending}
               </p>
             )}
           </div>
