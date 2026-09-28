@@ -102,7 +102,7 @@ const UI = {
     viewOnGithub: "Ver en GitHub",
     githubPending: "Enlace a GitHub pendiente de añadir.",
     buildLabel: (mode) => `build: portfolio-v1 · modo actual: ${mode === "blue" ? "blue-team" : "red-team"}`,
-    cvFile: "/public/cv-victor-capdevila-rodriguez.pdf",
+    cvFile: "/cv-victor-capdevila-rodriguez.pdf",
   },
   en: {
     nav: { about: "About", skills: "Skills", certifications: "Certifications", projects: "Projects", experience: "Experience", contact: "Contact" },
@@ -132,7 +132,7 @@ const UI = {
     viewOnGithub: "View on GitHub",
     githubPending: "GitHub link coming soon.",
     buildLabel: (mode) => `build: portfolio-v1 · current mode: ${mode === "blue" ? "blue-team" : "red-team"}`,
-    cvFile: "/public/cv-victor-capdevila-rodriguez-en.pdf",
+    cvFile: "/cv-victor-capdevila-rodriguez-en.pdf",
   },
 };
 
