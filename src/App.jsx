@@ -165,15 +165,27 @@ const SKILL_GROUPS = [
 
 const CERTIFICATIONS = [
   {
-    type: "course",
+    type: "certification",
     title: "Google AI Essentials",
     issuer: "Google",
     date: "2026",
     desc: {
-      es: "Curso introductorio sobre fundamentos de IA generativa: cómo funcionan estas herramientas, escritura de prompts efectivos y uso responsable de la IA en el trabajo diario.",
-      en: "Introductory course on generative AI fundamentals: how these tools work, writing effective prompts, and using AI responsibly in everyday work.",
+      es: "Certificación introductoria sobre fundamentos de IA generativa: cómo funcionan estas herramientas, escritura de prompts efectivos y uso responsable de la IA en el trabajo diario.",
+      en: "Introductory certificate on generative AI fundamentals: how these tools work, writing effective prompts, and using AI responsibly in everyday work.",
     },
     pdf: "/certs/google-ai-essentials.pdf",
+    verifyUrl: "",
+  },
+  {
+    type: "certification",
+    title: "Google AI Professional Certificate",
+    issuer: "Google",
+    date: "2026",
+    desc: {
+      es: "Certificación profesional de 8 cursos centrada en el uso avanzado de IA generativa en el trabajo: prompting estructurado, investigación con IA, redacción y comunicación, creación de contenido, análisis de datos, y construcción y despliegue de una aplicación propia mediante 'vibe coding' con Google AI Studio.",
+      en: "8-course professional certificate focused on advanced applied use of generative AI at work: structured prompting, AI-assisted research, writing and communication, content creation, data analysis, and building and deploying a custom app through vibe coding with Google AI Studio.",
+    },
+    pdf: "/certs/google-ai-professional-certificate.pdf",
     verifyUrl: "",
   },
 ];
